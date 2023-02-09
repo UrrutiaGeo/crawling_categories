@@ -59,7 +59,7 @@ Promise.allSettled(allCategoriesPromises).then(console.log)
 async function addCategory({ name, parentId, path, keyWords }) {
     const id = generateHashId('gca')
     try {
-        await client.query(`INSERT INTO gcategory VALUES ('${id}', '${name}', '${parentId}', '${path}')`)
+        await client.query(`INSERT INTO gcategory ("id", "name", "parent_id", "path", "keyword") VALUES ('${id}', '${name}', '${parentId}', '${path}', '${keyWords}')`)
 
         writeStream.write(`"${id}","${name}","${parentId}","${path}","${keyWords}"\n`);
         return  id
