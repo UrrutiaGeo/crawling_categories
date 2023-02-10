@@ -60,8 +60,8 @@ async function addCategory({ name, parentId, path, keyWords }) {
     const id = generateHashId('gca')
     try {
 
-        const _parentId = (parentId === '' || parentId === null || parentId === undefined) ? null : `'${parentId}'`;
-        const _path = (path === '' || path === null || path === undefined) ? null : `'${path}'`;
+        const _parentId = parentId === null ? null : `'${parentId}'`;
+        const _path = path === null ? null : `'${path}'`;
 
         await client.query(`INSERT INTO gcategory ("id", "name", "parent_id", "path", "keyword") VALUES ('${id}', '${name}', ${_parentId}, ${_path}, '${keyWords}')`)
 
