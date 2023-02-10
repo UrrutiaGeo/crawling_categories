@@ -101,14 +101,18 @@ async function insertCategories(category, parentId= null, path = null, keyWords 
 
 
 function generateHashId(prefix, length = 8) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
+    let $hash = '';
+
+    const characters = '0q1w9e2r8t3u7p4a6s5d5f6h4k7z3x8c2v9b1n0m';
+
+    const charactersLength = (characters.length - 1);
+
     let counter = 0;
+
     while (counter < length) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        $hash += characters.charAt(Math.floor(Math.random() * charactersLength));
         counter += 1;
     }
 
-    return `${prefix}_${result}`;
+    return `${prefix}_${$hash}`;
 }
