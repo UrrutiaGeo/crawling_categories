@@ -10,6 +10,9 @@ const connectionData = {
     database: `${process.env.DB_NAME}`,
     password: `${process.env.DB_PASSWORD}`,
     port: process.env.DB_PORT,
+    ssl: {
+        rejectUnauthorized: !(process.env.DB_SSL_MODE === false || process.env.DB_SSL_MODE === 'false'),
+    }
 };
 
 const client = new Client(connectionData);
