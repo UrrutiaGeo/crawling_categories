@@ -62,10 +62,11 @@ async function addCategory({ name, parentId, path, keyWords }) {
 
         const _parentId = parentId === null ? null : `'${parentId}'`;
         const _path = path === null ? null : `'${path}'`;
+        const _fullPath = _parentId == null ? `'${id}'` : _path;
 
-        await client.query(`INSERT INTO gcategory ("id", "name", "parent_id", "path", "keyword") VALUES ('${id}', '${name}', ${_parentId}, ${_path}, '${keyWords}')`)
+        await client.query(`INSERT INTO gcategory ("id", "name", "parent_id", "path", "keyword") VALUES ('${id}', '${name}', ${_parentId}, ${_fullPath}, '${keyWords}')`)
 
-        writeStream.write(`"${id}","${name}","${parentId}","${path}","${keyWords}"\n`);
+        writeStream.write(`"${id}","${name}","${parentId}","${_fullPath}","${keyWords}"\n`);
         return  id
     } catch (e) {
         console.error(e)
